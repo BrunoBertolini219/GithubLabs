@@ -25,6 +25,7 @@ appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat"
 material = { module = "com.google.android.material:material", version.ref = "material" }
 viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 navigationUi = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
 coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
@@ -40,7 +41,8 @@ recyclerView = { module = "androidx.recyclerview:recyclerview", version.ref = "r
 #CommonLibs
 commonLibs = [
     "core-ktx", "appCompat", "material", "viewmodel", "navigationUi", "coroutinesAndroid", "dagger",
-    "retrofit", "rxJava", "rxJavaAdapter", "rxAndroid", "recyclerView", "constraintLayout", "gson"
+    "retrofit", "rxJava", "rxJavaAdapter", "rxAndroid", "recyclerView", "constraintLayout", "gson",
+    "navigationFragment"
 ]
 #TestLibs
 testLibs = [
