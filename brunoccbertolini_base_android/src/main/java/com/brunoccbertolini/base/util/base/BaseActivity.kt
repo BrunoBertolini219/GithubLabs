@@ -2,9 +2,11 @@ package com.brunoccbertolini.base.util.base
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.brunoccbertolini.base.Factory
+
+typealias Factory<T> = (LayoutInflater) -> T
 
 abstract class BaseActivity<V: ViewBinding>(
     val inflate: Factory<V>,

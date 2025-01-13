@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Text">
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+
+    <style name="Text.Title" parent="Text">
+        <item name="android:textSize">@dimen/text_title_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Description" parent="Text">
+        <item name="android:textSize">@dimen/text_description_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

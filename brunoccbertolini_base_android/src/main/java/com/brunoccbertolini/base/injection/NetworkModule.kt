@@ -58,7 +58,7 @@ class NetworkModule {
 
     @Provides
     @Named(BASE_URL)
-    fun provideBaseUrl() = ""
+    fun provideBaseUrl() = "https://api.github.com/" // Could come from an native module
 
     companion object {
         const val BASE_URL = "BASE_URL"
