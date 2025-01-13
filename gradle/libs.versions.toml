@@ -13,6 +13,7 @@ retrofit = "2.9.0"
 navigation = "2.8.1"
 rxJava = "2.2.21"
 rxAndroid = "2.1.1"
+swiperefreshlayout = "1.1.0"
 
 #Tests
 junit = "4.13.2"
@@ -36,13 +37,14 @@ rxJavaAdapter = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref
 rxAndroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxAndroid" }
 rxJava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxJava" }
 recyclerView = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
+swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 
 [bundles]
 #CommonLibs
 commonLibs = [
     "core-ktx", "appCompat", "material", "viewmodel", "navigationUi", "coroutinesAndroid", "dagger",
     "retrofit", "rxJava", "rxJavaAdapter", "rxAndroid", "recyclerView", "constraintLayout", "gson",
-    "navigationFragment"
+    "navigationFragment", "swiperefreshlayout"
 ]
 #TestLibs
 testLibs = [

@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation(project(":brunoccbertolini_base_android"))
     api(libs.bundles.commonLibs)
+    implementation(libs.swiperefreshlayout)
 
     kapt(libs.dagger.compiler)
 }
