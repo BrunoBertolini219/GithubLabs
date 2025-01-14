@@ -7,5 +7,5 @@
     <fragment
         android:id="@+id/javaRepoListFragment"
         android:name="com.brunoccbertolini.github.presentation.list.JavaRepoListFragment"
-        android:label="JavaRepoListFragment" />
+        android:label="@string/java_repo_list_title" />
 </navigation>
