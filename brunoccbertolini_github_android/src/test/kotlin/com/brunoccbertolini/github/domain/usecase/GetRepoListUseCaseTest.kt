@@ -31,7 +31,7 @@ class GetRepoListUseCaseTest {
     @Test
     fun `GIVEN repository list detail THEN should return repository list model`(){
         val repositoryListDetail = mockModel.githubRepoListDetail
-        val repositoryListModel = mockModel.githubRepoList
+        val repositoryListModel = mockModel.githubRepoListModel
 
         //Act
         getRepositoryList.invoke(repositoryListDetail)

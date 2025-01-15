@@ -3,7 +3,6 @@ package com.brunoccbertolini.github.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.brunoccbertolini.github.data.GithubMock
 import com.brunoccbertolini.github.domain.repository.GithubRepository
-import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.junit.Before
@@ -32,7 +31,7 @@ class GetRepositoryPrListUseCaseTest {
     @Test
     fun `GIVEN full name THEN should return repository prs model`(){
         //Arrange
-        val prList = mockModel.githubPrList
+        val prList = mockModel.githubPrListModel
 
         //Act
         getRepositoryPrList.invoke("owner/repository")
