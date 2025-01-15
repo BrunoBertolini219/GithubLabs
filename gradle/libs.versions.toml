@@ -17,10 +17,16 @@ rxAndroid = "2.1.1"
 swiperefreshlayout = "1.1.0"
 
 #Tests
+archTest = "2.2.0"
+mockitoInline = "3.3.3"
+mockitoKotlin = "2.2.0"
 junit = "4.13.2"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
+mockitoInline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockitoKotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
+archTest = { module = "androidx.arch.core:core-testing", version.ref = "archTest" }
 
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -50,7 +56,7 @@ commonLibs = [
 ]
 #TestLibs
 testLibs = [
-    "junit"
+    "junit", "archTest", "mockitoKotlin", "mockitoInline"
 ]
 
 [plugins]

@@ -40,5 +40,6 @@ android {
 
 dependencies {
     implementation(project(":brunoccbertolini_base_android"))
+    implementation(libs.bundles.testLibs)
     kapt(libs.dagger.compiler)
 }
