@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.brunoccbertolini.base.util.base.BaseFragment
+import com.brunoccbertolini.base.util.listners.EndlessRecyclerViewScrollListener
 import com.brunoccbertolini.github.R
 import com.brunoccbertolini.github.databinding.FragmentJavaRepoListBinding
 import com.brunoccbertolini.github.di.GithubInjection
@@ -19,7 +21,9 @@ class JavaRepoListFragment : BaseFragment<FragmentJavaRepoListBinding>(
     @Inject
     lateinit var factory: JavaRepoListViewModel.Factory
     private val viewModel: JavaRepoListViewModel by viewModels { factory }
-    private val repoListAdapter by lazy { JavaRepoListAdapter() }
+    private val repoListAdapter = JavaRepoListAdapter()
+
+    private lateinit var endlessListener: EndlessRecyclerViewScrollListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         GithubInjection.get().inject(this)
@@ -39,10 +43,25 @@ class JavaRepoListFragment : BaseFragment<FragmentJavaRepoListBinding>(
     }
 
     private fun setupListAdapter() = binding.run {
-        binding.repoListRv.apply {
+        val linearLayoutManager = LinearLayoutManager(context)
+        repoListRv.apply {
             adapter = repoListAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
+            setHasFixedSize(true)
         }
+
+        endlessListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore(
+                page: Int,
+                totalItemsCount: Int,
+                view: RecyclerView?
+            ) {
+                viewModel.handleIntent(JavaRepoListIntent.ActionLoadMoreRepoItems(page))
+            }
+        }
+        endlessListener.setAdapter(repoListAdapter)
+        repoListRv.addOnScrollListener(endlessListener)
+
         repoListAdapter.setOnRepoItemClickListener {
             viewModel.handleIntent(JavaRepoListIntent.ActionItemClick(it))
         }
@@ -86,6 +105,6 @@ class JavaRepoListFragment : BaseFragment<FragmentJavaRepoListBinding>(
     }
 
     private fun showRepoList(repoList: List<GithubRepoItemModel>) {
-        repoListAdapter.differ.submitList(repoList)
+        repoListAdapter.addItems(repoList)
     }
 }

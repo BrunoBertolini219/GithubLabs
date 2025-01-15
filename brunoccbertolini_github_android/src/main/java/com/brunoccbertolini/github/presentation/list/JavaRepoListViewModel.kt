@@ -18,17 +18,16 @@ class JavaRepoListViewModel @Inject constructor(
     private val _state = MutableLiveData<JavaRepoListState>()
     val state: LiveData<JavaRepoListState> = _state
     private var hasNextPage = true
-    private var currentPage = 1
 
     fun handleIntent(intent: JavaRepoListIntent) {
         when (intent) {
             JavaRepoListIntent.ActionLoadRepoList -> getJavaRepositoriesList()
             is JavaRepoListIntent.ActionItemClick -> handleRepoClicked(intent.repoItem)
-            is JavaRepoListIntent.ActionLoadMoreRepoItems -> TODO()
+            is JavaRepoListIntent.ActionLoadMoreRepoItems -> if (hasNextPage) getJavaRepositoriesList(intent.page + 1)
         }
     }
 
-    private fun getJavaRepositoriesList(page: Int = currentPage) {
+    private fun getJavaRepositoriesList(page: Int = INITIAL_PAGE) {
         compositeDisposable.add(
             getRepoListUseCase(
                 GithubRepoListDetail(
@@ -40,7 +39,6 @@ class JavaRepoListViewModel @Inject constructor(
                 onLoading = { _state.value = JavaRepoListState.Loading(it) },
                 onSuccess = { repoList ->
                     hasNextPage = repoList.hasNextPage
-                    currentPage += 1
                     _state.value = JavaRepoListState.RepositoryListLoaded(repoList.items)
                 },
                 onError = { _state.value = JavaRepoListState.Error(it.message) }
@@ -64,5 +62,6 @@ class JavaRepoListViewModel @Inject constructor(
     companion object {
         private const val REPOSITORY_LANGUAGE = "Java"
         private const val SORT_BY = "stars"
+        private const val INITIAL_PAGE = 1
     }
 }
