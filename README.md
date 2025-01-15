@@ -41,8 +41,9 @@ A estrutura adota MVI, injeção de dependência com Dagger e manipulação ass�
 
 ## Melhorias Desejáveis
 
-* Testes (Unitários e Instrumentados)
-* Cache dos dados
-* Paginação dos dados
-* Modulos de Assets e Design system
-* Extração de configurações compartilhadas do Gradle para um .gradle separado
+* Cache dos dados;
+* Autenticar o consumo da API para aumentar o número de requisições disponíveis;
+* Testes Instrumentados;
+* Otimizar paginação com paging3 e remover EndlessRVListener;
+* Modulos de Assets e Design system;
+* Extração de configurações compartilhadas do Gradle para um .gradle separado.
