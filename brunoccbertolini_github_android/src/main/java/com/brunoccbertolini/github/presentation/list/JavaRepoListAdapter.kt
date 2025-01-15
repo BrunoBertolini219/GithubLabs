@@ -10,9 +10,9 @@ import com.brunoccbertolini.github.databinding.ItemJavaRepositoryBinding
 import com.brunoccbertolini.github.domain.entity.GithubRepoItemModel
 import com.bumptech.glide.Glide
 
-class JavaRepoListAdapter :
-    RecyclerView.Adapter<JavaRepoListAdapter.ViewHolder>() {
+class JavaRepoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val differCallback = object : DiffUtil.ItemCallback<GithubRepoItemModel>() {
+
         override fun areItemsTheSame(
             oldItem: GithubRepoItemModel,
             newItem: GithubRepoItemModel
@@ -27,11 +27,11 @@ class JavaRepoListAdapter :
             return oldItem == newItem
         }
     }
-    val differ = AsyncListDiffer(
+    private val differ = AsyncListDiffer(
         this,
         differCallback
     )
-
+    private val currentList = differ.currentList.toMutableList()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -45,16 +45,26 @@ class JavaRepoListAdapter :
         )
     }
 
-    override fun getItemCount() = differ.currentList.size
-
     override fun onBindViewHolder(
-        holder: ViewHolder,
+        holder: RecyclerView.ViewHolder,
         position: Int
     ) {
-        holder.bindView(differ.currentList[position])
+        if(holder is ViewHolder) holder.bindView(differ.currentList[position])
     }
 
+    override fun getItemCount() = differ.currentList.size
+
     private var onRepoItemClickListener: ((GithubRepoItemModel) -> Unit)? = null
+
+    fun addItems(newItems: List<GithubRepoItemModel>) {
+        val currentSize = differ.currentList.size
+        val updatedList = differ.currentList.toMutableList().apply {
+            addAll(newItems)
+        }
+        differ.submitList(updatedList) {
+            notifyItemRangeInserted(currentSize, newItems.size)
+        }
+    }
 
     inner class ViewHolder(private val binding: ItemJavaRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(repo: GithubRepoItemModel) = binding.run {
@@ -80,4 +90,5 @@ class JavaRepoListAdapter :
     fun setOnRepoItemClickListener(listener: (GithubRepoItemModel) -> Unit) {
         onRepoItemClickListener = listener
     }
+
 }

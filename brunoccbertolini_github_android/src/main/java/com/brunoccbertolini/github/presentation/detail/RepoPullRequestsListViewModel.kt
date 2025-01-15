@@ -20,9 +20,7 @@ class RepoPullRequestsListViewModel(
     fun handleIntent(intent: RepoPullRequestsListIntent) {
         when (intent) {
             is RepoPullRequestsListIntent.ActionLoadPrList -> getRepositoryPrList(intent.fullName)
-            is RepoPullRequestsListIntent.ActionItemClick -> handleRepoClicked(intent.repoItem)
-            is RepoPullRequestsListIntent.ActionLoadMoreRepoItems -> TODO()
-        }
+            is RepoPullRequestsListIntent.ActionItemClick -> handleRepoClicked(intent.repoItem) }
     }
 
     private fun getRepositoryPrList(fullName: String) {
