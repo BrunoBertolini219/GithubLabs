@@ -1,7 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -59,7 +60,4 @@ android {
 dependencies {
     implementation(project(":brunoccbertolini_github_android"))
     implementation(project(":brunoccbertolini_base_android"))
-    api(libs.bundles.commonLibs)
-
-    kapt(libs.dagger.compiler)
 }
