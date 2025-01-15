@@ -2,8 +2,8 @@ package com.brunoccbertolini.github.di
 
 import com.brunoccbertolini.base.injection.AppComponent
 import com.brunoccbertolini.base.injection.RuntimeScope
+import com.brunoccbertolini.github.presentation.detail.RepoPullRequestsListFragment
 import com.brunoccbertolini.github.presentation.list.JavaRepoListFragment
-import com.brunoccbertolini.github.presentation.list.JavaRepoListViewModel
 import dagger.Component
 
 @RuntimeScope
@@ -13,5 +13,5 @@ import dagger.Component
 )
 interface GithubComponent {
     fun inject(target: JavaRepoListFragment)
-    fun injectViewModel() : JavaRepoListViewModel
+    fun inject(target: RepoPullRequestsListFragment)
 }

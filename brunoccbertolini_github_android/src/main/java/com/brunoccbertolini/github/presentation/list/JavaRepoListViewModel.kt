@@ -11,7 +11,7 @@ import com.brunoccbertolini.github.domain.usecase.GetRepoListUseCase
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class JavaRepoListViewModel(
+class JavaRepoListViewModel @Inject constructor(
     private val getRepoListUseCase: GetRepoListUseCase
 ) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()

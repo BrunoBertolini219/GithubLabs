@@ -1,4 +1,4 @@
-package com.brunoccbertolini.github.presentation.list
+package com.brunoccbertolini.github.presentation.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,23 +6,26 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.brunoccbertolini.github.databinding.FragmentRepoPrListBinding
 import com.brunoccbertolini.github.databinding.ItemJavaRepositoryBinding
+import com.brunoccbertolini.github.databinding.ItemRepoPrBinding
 import com.brunoccbertolini.github.domain.entity.GithubRepoItemModel
+import com.brunoccbertolini.github.domain.entity.RepositoryPrItemModel
 import com.bumptech.glide.Glide
 
-class JavaRepoListAdapter :
-    RecyclerView.Adapter<JavaRepoListAdapter.ViewHolder>() {
-    private val differCallback = object : DiffUtil.ItemCallback<GithubRepoItemModel>() {
+class RepoPrListAdapter :
+    RecyclerView.Adapter<RepoPrListAdapter.ViewHolder>() {
+    private val differCallback = object : DiffUtil.ItemCallback<RepositoryPrItemModel>() {
         override fun areItemsTheSame(
-            oldItem: GithubRepoItemModel,
-            newItem: GithubRepoItemModel
+            oldItem: RepositoryPrItemModel,
+            newItem: RepositoryPrItemModel
         ): Boolean {
-            return oldItem.repositoryFullName == newItem.repositoryFullName
+            return oldItem.pullRequestUrl == newItem.pullRequestUrl
         }
 
         override fun areContentsTheSame(
-            oldItem: GithubRepoItemModel,
-            newItem: GithubRepoItemModel
+            oldItem: RepositoryPrItemModel,
+            newItem: RepositoryPrItemModel
         ): Boolean {
             return oldItem == newItem
         }
@@ -37,7 +40,7 @@ class JavaRepoListAdapter :
         viewType: Int
     ): ViewHolder {
         return ViewHolder(
-            ItemJavaRepositoryBinding.inflate(
+            ItemRepoPrBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -54,21 +57,18 @@ class JavaRepoListAdapter :
         holder.bindView(differ.currentList[position])
     }
 
-    private var onRepoItemClickListener: ((GithubRepoItemModel) -> Unit)? = null
+    private var onRepoItemClickListener: ((RepositoryPrItemModel) -> Unit)? = null
 
-    inner class ViewHolder(private val binding: ItemJavaRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindView(repo: GithubRepoItemModel) = binding.run {
-            repoDataInclude.apply {
-                repoTitleTv.text = repo.repositoryName
-                repoStatsInclude.root.isVisible = true
-                repoStatsInclude.repoForkCountTv.text = repo.forks.toString()
-                repoStatsInclude.repoStarCountTv.text = repo.stars.toString()
-                repoDescriptionTv.text = repo.repositoryDescription
+    inner class ViewHolder(private val binding: ItemRepoPrBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bindView(repo: RepositoryPrItemModel) = binding.run {
+            repoDetailDataInclude.apply {
+                repoTitleTv.text = repo.pullRequestName
+                repoDescriptionTv.text = repo.pullRequestDescription
             }
-            repoUserInclude.apply {
-                repoUserNameTv.text = repo.owner.username
+            repoDetailUsernameInclude.apply {
+                repoUserNameTv.text = repo.user.username
                 Glide.with(itemView.context)
-                    .load(repo.owner.userAvatar)
+                    .load(repo.user.userAvatar)
                     .into(repoUserAvatarIv)
             }
             root.setOnClickListener {
@@ -77,7 +77,7 @@ class JavaRepoListAdapter :
         }
     }
 
-    fun setOnRepoItemClickListener(listener: (GithubRepoItemModel) -> Unit) {
+    fun setOnRepoItemClickListener(listener: (RepositoryPrItemModel) -> Unit) {
         onRepoItemClickListener = listener
     }
 }

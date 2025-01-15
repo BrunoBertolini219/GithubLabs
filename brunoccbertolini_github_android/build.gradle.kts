@@ -1,7 +1,8 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -34,12 +35,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
     implementation(project(":brunoccbertolini_base_android"))
-    api(libs.bundles.commonLibs)
-    implementation(libs.swiperefreshlayout)
-
     kapt(libs.dagger.compiler)
 }

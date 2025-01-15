@@ -2,6 +2,7 @@ package com.brunoccbertolini.github.data.remote.datasource
 
 import com.brunoccbertolini.base.service.service
 import com.brunoccbertolini.github.data.remote.model.GithubRepoListResponse
+import com.brunoccbertolini.github.data.remote.model.RepositoryPrItemResponse
 import com.brunoccbertolini.github.data.remote.service.GithubService
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -10,6 +11,7 @@ import javax.inject.Inject
 
 interface GithubDataSource {
     fun getJavaRepoList(request: Map<String, String>): Single<GithubRepoListResponse>
+    fun getRepositoryPulls(fullName: String): Single<List<RepositoryPrItemResponse>>
 }
 
 class GithubDataSourceRemote @Inject constructor(
@@ -23,4 +25,5 @@ class GithubDataSourceRemote @Inject constructor(
     )
 
     override fun getJavaRepoList(request: Map<String, String>) = service.getJavaRepoList(request)
+    override fun getRepositoryPulls(fullName: String) = service.getRepositoryPulls(fullName)
 }

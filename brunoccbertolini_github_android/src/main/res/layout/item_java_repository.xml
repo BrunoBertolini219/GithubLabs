@@ -21,7 +21,7 @@
 
         <include
             android:id="@+id/repo_user_include"
-            layout="@layout/item_repo_username"
+            layout="@layout/item_repos_list_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

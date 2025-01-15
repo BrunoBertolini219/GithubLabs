@@ -27,7 +27,7 @@ fun GithubRepoItemResponse.mapToRepoItemModel() =
     GithubRepoItemModel(
         repositoryName = repositoryName,
         repositoryFullName = repositoryFullName,
-        repositoryDescription = repositoryDescription,
+        repositoryDescription = repositoryDescription ?: "",
         stars = stars,
         owner = owner.mapToRepoOwnerModel(),
         forks = forks
