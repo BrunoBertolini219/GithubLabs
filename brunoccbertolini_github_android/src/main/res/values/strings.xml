@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Java Repository List -->
+    <string name="java_repo_list_title">Github JavaPop</string>
+
+    <string name="repo_name_content_description">Nome do repositório</string>
+    <string name="repo_desc_content_description">Descrição do repositório</string>
+    <string name="repo_stars_content_description">Descrição do repositório</string>
+    <string name="repo_forks_content_description">Descrição do repositório</string>
+    <string name="repo_owner_name_content_description">Nome do usuário dono do repositório</string>
+    <string name="repo_owner_avatar_content_description">Avatar do usuário dono do repositório</string>
+
+    <!-- Repository Pull Requests -->
+    <string name="repo_pr_open_web_error">Não foi possível abrir o navegador.</string>
+
+    <string name="repo_pr_open_request_msg_error">Erro ao carregar os dados</string>
+    <string name="repo_pr_open_request_title_error">Tentar Novamente?</string>
+    <string name="repo_pr_open_request_main_btn">Sim</string>
+    <string name="repo_pr_open_request_dismiss_btn">Não</string>
+
+</resources>

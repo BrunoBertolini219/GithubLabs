@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/github_graph"
+    app:startDestination="@id/javaRepoListFragment">
+
+    <fragment
+        android:id="@+id/javaRepoListFragment"
+        android:name="com.brunoccbertolini.github.presentation.list.JavaRepoListFragment"
+        android:label="@string/java_repo_list_title"
+        tools:layout="@layout/fragment_java_repo_list">
+        <action
+            android:id="@+id/to_repo_pull_requests_list_fragment"
+            app:destination="@id/repoPullRequestsListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/repoPullRequestsListFragment"
+        android:name="com.brunoccbertolini.github.presentation.detail.RepoPullRequestsListFragment"
+        tools:layout="@layout/fragment_repo_pr_list">
+        <argument
+            android:name="fullName"
+            app:argType="string" />
+    </fragment>
+</navigation>

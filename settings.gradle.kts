@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Github Labs"
 include(":app")
 include(":brunoccbertolini_github_android")
+include(":brunoccbertolini_base_android")
