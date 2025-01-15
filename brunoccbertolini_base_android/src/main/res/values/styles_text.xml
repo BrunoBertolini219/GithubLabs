@@ -15,6 +15,12 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="Text.Username" parent="Text">
+        <item name="android:textSize">@dimen/text_description_size</item>
+        <item name="android:textColor">@color/colorTextAuxiliary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="Text.Stats" parent="Text">
         <item name="android:textSize">@dimen/text_title_size</item>
         <item name="android:textColor">@color/colorAccent</item>

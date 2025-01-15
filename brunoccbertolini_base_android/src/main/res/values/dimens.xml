@@ -12,6 +12,7 @@
 
     <dimen name="vertical_margin_detail">2dp</dimen>
     <dimen name="vertical_margin_small">4dp</dimen>
+    <dimen name="vertical_margin_medium">8dp</dimen>
     <dimen name="vertical_margin">16dp</dimen>
 
     <!-- TEXT -->
@@ -25,7 +26,7 @@
     <!-- IMAGE/ICON -->
     <dimen name="icon_default">16dp</dimen>
     <dimen name="image_small">32dp</dimen>
-    <dimen name="image_default">64dp</dimen>
-    <dimen name="image_large">128dp</dimen>
+    <dimen name="image_default">48dp</dimen>
+    <dimen name="image_large">80dp</dimen>
 
 </resources>
