@@ -1,6 +1,7 @@
 package com.brunoccbertolini.github.domain.entity
 
 data class GithubRepoListModel(
-    val hasNextPage: Boolean,
+    val totalItems: Int,
+    val totalPages: Int,
     val items: List<GithubRepoItemModel>
 )

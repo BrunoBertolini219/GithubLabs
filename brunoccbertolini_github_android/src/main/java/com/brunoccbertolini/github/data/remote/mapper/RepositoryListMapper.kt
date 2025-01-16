@@ -19,7 +19,8 @@ fun GithubRepoListDetail.toGetRepoListQuery(): Map<String, String> {
 
 fun GithubRepoListResponse.mapToRepoListModel() =
     GithubRepoListModel(
-        hasNextPage = hasNextPage,
+        totalItems = totalItems,
+        totalPages = totalItems / ITEMS_PER_PAGE,
         items = items.map { it.mapToRepoItemModel() }
     )
 
@@ -38,3 +39,5 @@ fun GithubRepoOwnerResponse.mapToRepoOwnerModel() =
         username = username,
         userAvatar = userAvatar
     )
+
+private const val ITEMS_PER_PAGE = 30

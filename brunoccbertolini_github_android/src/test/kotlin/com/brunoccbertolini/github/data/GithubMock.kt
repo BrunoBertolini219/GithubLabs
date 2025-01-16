@@ -16,7 +16,7 @@ data class GithubMock(
     val sort: String = "stars",
     val language: String = "Java",
     val githubRepoListModel: GithubRepoListModel = GithubRepoListModel(
-        hasNextPage = false,
+        totalItems = 1000,
         items = listOf(
             GithubRepoItemModel(
                 repositoryName = "hello-algo",
@@ -32,7 +32,7 @@ data class GithubMock(
         )
     ),
     val githubRepoListResponse: GithubRepoListResponse = GithubRepoListResponse(
-        hasNextPage = false,
+        totalItems = 1000,
         items = listOf(
             GithubRepoItemResponse(
                 repositoryName = "hello-algo",

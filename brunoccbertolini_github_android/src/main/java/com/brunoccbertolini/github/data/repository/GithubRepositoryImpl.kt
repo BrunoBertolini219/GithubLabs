@@ -33,7 +33,8 @@ class GithubRepositoryFake @Inject constructor() : GithubRepository {
     override fun getJavaRepoList(request: GithubRepoListDetail): Single<GithubRepoListModel> {
         return Single.just(
             GithubRepoListModel(
-                hasNextPage = false,
+                totalItems = 10000,
+                totalPages = 333,
                 items = listOf(
                     GithubRepoItemModel(
                         repositoryName = "hello-algo",
