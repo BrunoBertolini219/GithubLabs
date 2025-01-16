@@ -57,13 +57,10 @@ class JavaRepoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var onRepoItemClickListener: ((GithubRepoItemModel) -> Unit)? = null
 
     fun addItems(newItems: List<GithubRepoItemModel>) {
-        val currentSize = differ.currentList.size
         val updatedList = differ.currentList.toMutableList().apply {
             addAll(newItems)
         }
-        differ.submitList(updatedList) {
-            notifyItemRangeInserted(currentSize, newItems.size)
-        }
+        differ.submitList(updatedList)
     }
 
     inner class ViewHolder(private val binding: ItemJavaRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
