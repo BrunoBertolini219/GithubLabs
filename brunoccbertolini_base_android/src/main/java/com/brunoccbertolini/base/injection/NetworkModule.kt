@@ -1,8 +1,13 @@
 package com.brunoccbertolini.base.injection
 
+import com.brunoccbertolini.base.BuildConfig
 import dagger.Module
 import dagger.Provides
+import dagger.multibindings.ElementsIntoSet
+import dagger.multibindings.IntoSet
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -29,18 +34,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named(COROUTINES_RETROFIT)
-    fun provideCoroutineRetrofitBuilder(
-        @Named(BASE_URL) baseUrl: String,
-        converter: Converter.Factory,
-    ): Retrofit.Builder {
-        return Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(converter)
-    }
-
-    @Provides
-    @Singleton
     fun provideConverter(): Converter.Factory {
         return GsonConverterFactory.create()
     }
@@ -52,8 +45,31 @@ class NetworkModule {
     }
 
     @Provides
-    fun providesClientBuilder(): OkHttpClient.Builder {
-        return OkHttpClient.Builder()
+    fun providesClientBuilder(interceptors: @JvmSuppressWildcards(true) Set<Interceptor>): OkHttpClient.Builder {
+        val builder = OkHttpClient.Builder()
+        interceptors.forEach {
+            builder.addInterceptor(it)
+        }
+        return builder
+    }
+
+    @Provides
+    @ElementsIntoSet
+    fun provideInterceptors(): Set<Interceptor> = setOf()
+
+    @Provides
+    @IntoSet
+    fun provideAuthInterceptor(): Interceptor {
+
+        return AuthInterceptor(token = BuildConfig.API_KEY) // key could come from an native module
+    }
+
+    @Provides
+    @IntoSet
+    fun provideHttpLoggingInterceptor(): Interceptor {
+        return HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     @Provides
@@ -62,6 +78,5 @@ class NetworkModule {
 
     companion object {
         const val BASE_URL = "BASE_URL"
-        const val COROUTINES_RETROFIT = "COROUTINES_RETROFIT"
     }
 }
