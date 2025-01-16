@@ -5,6 +5,7 @@ import com.brunoccbertolini.base.BaseApplication
 import com.brunoccbertolini.base.ui.SplashActivity
 import dagger.BindsInstance
 import dagger.Component
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Named
@@ -21,9 +22,6 @@ interface AppComponent {
     fun provideRetrofitBuilder(): Retrofit.Builder
     fun provideClient(): OkHttpClient.Builder
 
-    @Named(NetworkModule.COROUTINES_RETROFIT)
-    fun provideCoroutineRetrofitBuilder(): Retrofit.Builder
-
     @Component.Builder
     interface Builder {
 
@@ -32,5 +30,4 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
-
 }

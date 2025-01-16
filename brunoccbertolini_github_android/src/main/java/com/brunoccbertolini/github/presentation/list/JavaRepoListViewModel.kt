@@ -23,7 +23,7 @@ class JavaRepoListViewModel @Inject constructor(
         when (intent) {
             JavaRepoListIntent.ActionLoadRepoList -> getJavaRepositoriesList()
             is JavaRepoListIntent.ActionItemClick -> handleRepoClicked(intent.repoItem)
-            is JavaRepoListIntent.ActionLoadMoreRepoItems -> if (hasNextPage) getJavaRepositoriesList(intent.page + 1)
+            is JavaRepoListIntent.ActionLoadMoreRepoItems -> if (hasNextPage) getJavaRepositoriesList(intent.page)
         }
     }
 
@@ -38,12 +38,22 @@ class JavaRepoListViewModel @Inject constructor(
             ).singleSubscribe(
                 onLoading = { _state.value = JavaRepoListState.Loading(it) },
                 onSuccess = { repoList ->
-                    hasNextPage = repoList.hasNextPage
+                    hasMoreItems(
+                        totalPages = repoList.totalPages,
+                        currentPage = page
+                    )
                     _state.value = JavaRepoListState.RepositoryListLoaded(repoList.items)
                 },
                 onError = { _state.value = JavaRepoListState.Error(it.message) }
             )
         )
+    }
+
+    private fun hasMoreItems(
+        totalPages: Int,
+        currentPage: Int
+    ){
+        hasNextPage = totalPages > currentPage
     }
 
     private fun handleRepoClicked(repoItem: GithubRepoItemModel) {

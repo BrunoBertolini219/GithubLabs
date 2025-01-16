@@ -31,7 +31,7 @@ class JavaRepoListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this,
         differCallback
     )
-    private val currentList = differ.currentList.toMutableList()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

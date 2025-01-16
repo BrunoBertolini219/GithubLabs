@@ -26,6 +26,14 @@ API: https://api.github.com/
 
 ---------------------
 
+## Setup do Projeto
+* Clonar o Projeto
+* Gerar um PAT (Personal Access Token)
+* Adicionar PAT no local.properties ( ex: API_KEY=SEU_PAT )
+* Rodar Projeto
+
+---------------------
+
 ## Arquitetura do Projeto
 
 A divisão dos módulos é a seguinte:
@@ -45,5 +53,5 @@ A estrutura adota MVI, injeção de dependência com Dagger e manipulação ass�
 * Autenticar o consumo da API para aumentar o número de requisições disponíveis;
 * Testes Instrumentados;
 * Otimizar paginação com paging3 e remover EndlessRVListener;
-* Modulos de Assets e Design system;
+* Modulos de Assets, Nativo(Para dados sensíveis) Design system;
 * Extração de configurações compartilhadas do Gradle para um .gradle separado.
