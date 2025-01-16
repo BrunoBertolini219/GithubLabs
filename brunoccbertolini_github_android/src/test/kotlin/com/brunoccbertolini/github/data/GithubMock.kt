@@ -17,6 +17,7 @@ data class GithubMock(
     val language: String = "Java",
     val githubRepoListModel: GithubRepoListModel = GithubRepoListModel(
         totalItems = 1000,
+        totalPages = 333,
         items = listOf(
             GithubRepoItemModel(
                 repositoryName = "hello-algo",
